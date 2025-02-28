@@ -27,7 +27,7 @@ def print_animals_info(animals):
 
 def main():
     """Here is the main function that coordinates data collection and printing."""
-animals_data = load_data('animals_data.json')
-print_animals_info(animals_data)
+    animals_data = load_data('animals_data.json')
+    print_animals_info(animals_data)
 if __name__ == "__main__":
     main()
