@@ -6,27 +6,28 @@ def load_data(file_path):
     return json.load(handle)
 
 
+def serialize_animal(animal):
+    """Converts a single animal object into HTML tags."""
+    output = '<li class="cards__item">'
+    output += f"<div class='card__title'>{animal['name']}</div><br/>\n"
+    output += '<p class="card__text">'
+    characteristics = animal.get("characteristics", {})
+    if "diet" in characteristics:
+        output += f"<strong>Diet:</strong> {characteristics['diet']}<br/>\n"
+    if "type" in characteristics:
+        output += f"<strong>Type:</strong> {characteristics['type']}<br/>\n"
+    locations = animal.get("locations", [])
+    if locations:
+        output += f"<strong>Location:</strong> {locations[0]}<br/>\n"
+    output += "</p></li>"
+    return output
+
 
 def print_animals_info(animals):
-    """The function iterates over the animals_data.json, collects and prints the name
-    and, if included in the json data, prints also the diet, the first location entry,
-    and the type of the fox-animal."""
+    """Iterates over all animals and generates the full HTML list."""
     output = ''
-    for animal_data in animals:
-        output += '<li class="cards__item">'
-
-        output += f"<div class='card__title'> {animal_data ["name"]}</div><br/>\n"
-        output += '<p class="card__text">'
-        characteristics = animal_data.get("characteristics", {})
-        if "diet" in characteristics:
-            output += f"<strong>Diet:</strong> {animal_data ["characteristics"] ["diet"]}<br/>\n"
-        if "type" in characteristics:
-            output += f"<strong>Type:</strong> {animal_data ["characteristics"] ["type"]}<br/>\n"
-
-        locations = animal_data.get("locations", [])
-        if locations:
-            output += f"<strong>Location:</strong> {animal_data ["locations"][0]}<br/>\n"
-            output += "</li>"
+    for animal in animals:
+        output += serialize_animal(animal)
     return output
 
 
@@ -44,12 +45,12 @@ def create_animals_html(template, output_path, animals_info):
         animals_html_file.write(new_html)
 
 
-
 def main():
     """Here is the main function that coordinates data collection, manipulation and output."""
     animals_data = load_data('animals_data.json')
     animals_info = print_animals_info(animals_data)
     template = read_html_template ("animals_template.html")
     create_animals_html(template, "animals.html", animals_info)
+
 if __name__ == "__main__":
     main()
