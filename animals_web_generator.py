@@ -14,17 +14,18 @@ def print_animals_info(animals):
     output = ''
     for animal_data in animals:
         output += '<li class="cards__item">'
-        output += f"Name: {animal_data ["name"]}<br/>\n"
 
+        output += f"<div class='card__title'> {animal_data ["name"]}</div><br/>\n"
+        output += '<p class="card__text">'
         characteristics = animal_data.get("characteristics", {})
         if "diet" in characteristics:
-            output += f"Diet: {animal_data ["characteristics"] ["diet"]}<br/>\n"
+            output += f"<strong>Diet:</strong> {animal_data ["characteristics"] ["diet"]}<br/>\n"
         if "type" in characteristics:
-            output += f"Type: {animal_data ["characteristics"] ["type"]}<br/>\n"
+            output += f"<strong>Type:</strong> {animal_data ["characteristics"] ["type"]}<br/>\n"
 
         locations = animal_data.get("locations", [])
         if locations:
-            output += f"Location: {animal_data ["locations"][0]}<br/>\n"
+            output += f"<strong>Location:</strong> {animal_data ["locations"][0]}<br/>\n"
             output += "</li>"
     return output
 
