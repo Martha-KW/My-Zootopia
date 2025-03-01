@@ -9,16 +9,27 @@ def load_data(file_path):
 def serialize_animal(animal):
     """Converts a single animal object into HTML tags."""
     output = '<li class="cards__item">'
+
     output += f"<div class='card__title'>{animal['name']}</div><br/>\n"
+
+    scientific_name = animal.get("taxonomy", {}).get("scientific_name")
+    if scientific_name:
+        output += f"<div class='card__subtitle'>{scientific_name.upper()}</div>\n"
+
     output += '<p class="card__text">'
     characteristics = animal.get("characteristics", {})
     if "diet" in characteristics:
         output += f"<strong>Diet:</strong> {characteristics['diet']}<br/>\n"
+    if "prey" in characteristics:
+        output += f"<strong>Prey:</strong> {characteristics['prey']}<br/>\n"
+    if "predators" in characteristics:
+        output += f"<strong>Predators:</strong> {characteristics['predators']}<br/>\n"
     if "type" in characteristics:
         output += f"<strong>Type:</strong> {characteristics['type']}<br/>\n"
     locations = animal.get("locations", [])
     if locations:
         output += f"<strong>Location:</strong> {locations[0]}<br/>\n"
+
     output += "</p></li>"
     return output
 
