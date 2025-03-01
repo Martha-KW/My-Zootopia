@@ -13,17 +13,19 @@ def print_animals_info(animals):
     and the type of the fox-animal."""
     output = ''
     for animal_data in animals:
-        output += f"Name: {animal_data ["name"]}\n"
+        output += '<li class="cards__item">'
+        output += f"Name: {animal_data ["name"]}<br/>\n"
 
         characteristics = animal_data.get("characteristics", {})
         if "diet" in characteristics:
-            output += f"Diet: {animal_data ["characteristics"] ["diet"]}\n"
+            output += f"Diet: {animal_data ["characteristics"] ["diet"]}<br/>\n"
         if "type" in characteristics:
-            output += f"Type: {animal_data ["characteristics"] ["type"]}\n"
+            output += f"Type: {animal_data ["characteristics"] ["type"]}<br/>\n"
 
         locations = animal_data.get("locations", [])
         if locations:
-            output += f"Location: {animal_data ["locations"][0]}\n"
+            output += f"Location: {animal_data ["locations"][0]}<br/>\n"
+            output += "</li>"
     return output
 
 
