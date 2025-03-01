@@ -16,21 +16,22 @@ def serialize_animal(animal):
     if scientific_name:
         output += f"<div class='card__subtitle'>{scientific_name.upper()}</div>\n"
 
-    output += '<p class="card__text">'
+    output += '<div class="card__text">'
+    output += '<ul>'
     characteristics = animal.get("characteristics", {})
     if "diet" in characteristics:
-        output += f"<strong>Diet:</strong> {characteristics['diet']}<br/>\n"
+        output += f"<li><strong>Diet:</strong> {characteristics['diet']}</li>\n"
     if "prey" in characteristics:
-        output += f"<strong>Prey:</strong> {characteristics['prey']}<br/>\n"
+        output += f"<li><strong>Prey:</strong> {characteristics['prey']}</li>\n"
     if "predators" in characteristics:
-        output += f"<strong>Predators:</strong> {characteristics['predators']}<br/>\n"
+        output += f"<li><strong>Predators:</strong> {characteristics['predators']}</li>\n"
     if "type" in characteristics:
-        output += f"<strong>Type:</strong> {characteristics['type']}<br/>\n"
+        output += f"<li><strong>Type:</strong> {characteristics['type']}</li>\n"
     locations = animal.get("locations", [])
     if locations:
-        output += f"<strong>Location:</strong> {locations[0]}<br/>\n"
+        output += f"<li><strong>Location:</strong> {locations[0]}</li>\n"
+        output +=  "</ul></div></li>"
 
-    output += "</p></li>"
     return output
 
 

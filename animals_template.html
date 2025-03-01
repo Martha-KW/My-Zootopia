@@ -11,13 +11,16 @@
 
 
         html {
-          background-color: #ffe9e9;
+          background-color: #ff7d33
         }
 
         h1 {
-            text-align: center;
+            text-align: left;
             font-size: 40pt;
-            font-weight: normal;
+            font-weight: lighter;
+            color: @gray-dark;
+            text-transform: uppercase;
+            padding: 0 0 0 50px;
         }
 
         body {
@@ -62,18 +65,30 @@
           text-transform: uppercase;
           color: #cccccc;
           margin-bottom: 0.5rem;
-}
+        }
 
         .card__text {
           flex: 1 1 auto;
           font-size: 0.95rem;
           line-height: 2;
           margin-bottom: 1.25rem;
+          font-weight: normal;
+          color: @gray-dark;
         }
+
+        ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        background: #ffa763
+        }
+
+
+
         </style>
     </head>
     <body>
-        <h1>My Animal Repository</h1>
+        <h1>My 🦊 Repository</h1>
         <ul class="cards">
             __REPLACE_ANIMALS_INFO__
         </ul>
